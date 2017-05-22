@@ -1,6 +1,7 @@
 ## Interface: 11200
 ## Title: AntiDaze v0.7
 ## Notes: Cancel Aspect of the Cheetah or Aspect of the Pack when you get dazed.
+## Notes-ruRU: Отмена Духа гепарда или Духа стаи при получении эффекта Головокружение.
 ## OptionalDeps: myAddOns, Cosmos
 ## SavedVariablesPerCharacter: ADOptions
 AntiDaze.xml

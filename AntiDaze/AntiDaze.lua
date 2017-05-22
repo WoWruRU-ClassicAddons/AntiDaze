@@ -9,14 +9,10 @@
 
 AD_VERSION = "v0.7";
 AD_TITLE = "AntiDaze";
-AD_SUBTITLE = "Prevent multiple Dazing";
-AD_DESC = "Cancel Cheetah when active and dazed";
 AD_VERS_TITLE = AD_TITLE.." "..AD_VERSION;
 
 BINDING_HEADER_AD_TITLE = AD_TITLE;
-BINDING_NAME_AD_TOGGLE = "Toggle "..AD_TITLE;
-BINDING_NAME_AD_TOGGLE_OPTIONS = "Toggle Options";
-BINDING_NAME_AD_MANUAL = "Cancel Cheetah/Pack"
+BINDING_NAME_AD_TOGGLE = TXT_TOGGLE.." "..AD_TITLE;
 
 BINDING_HEADER_AD_OPTIONS_TITLE = AD_TITLE;
 
@@ -32,9 +28,9 @@ function AD_OnLoad()
 
     this:RegisterEvent("PLAYER_AURAS_CHANGED");
 
-    DEFAULT_CHAT_FRAME:AddMessage(AD_VERS_TITLE.." loaded.", 1, 1, 0.5);
+    DEFAULT_CHAT_FRAME:AddMessage(AD_VERS_TITLE.." "..TXT_LOADED, 1, 1, 0.5);
 	else
-    DEFAULT_CHAT_FRAME:AddMessage(AD_VERS_TITLE.." not loaded: Player is not a Hunter.", 1, 1, 0.5);
+    DEFAULT_CHAT_FRAME:AddMessage(AD_VERS_TITLE.." "..TXT_NOTLOADED, 1, 1, 0.5);
   end
   SLASH_AD1 = "/AD";
   SLASH_AD2 = "/antidaze";
@@ -113,17 +109,17 @@ function AD_SlashCommand(msg)
     else
       if ( DEFAULT_CHAT_FRAME ) then
         DEFAULT_CHAT_FRAME:AddMessage(AD_VERS_TITLE, 1, 1, 0.5);
-        DEFAULT_CHAT_FRAME:AddMessage("Syntax: /ad [command] or /antidaze [command]", 1, 1, 0.5);
-        DEFAULT_CHAT_FRAME:AddMessage("toggle     ---   Toggles Canceling of all Aspects", 1, 1, 0.5);
-        DEFAULT_CHAT_FRAME:AddMessage("ccheet     ---   Toggles Canceling Cheetah when Dazed", 1, 1, 0.5);
-        DEFAULT_CHAT_FRAME:AddMessage("cpack      ---   Toggles Canceling Pack when Party is Dazed", 1, 1, 0.5);
-        DEFAULT_CHAT_FRAME:AddMessage("cpackpets  ---   Toggles Canceling Pack when your or a Party Pet is Dazed", 1, 1, 0.5);
-        DEFAULT_CHAT_FRAME:AddMessage("options    ---   Toggles Options Frame", 1, 1, 0.5);
+        DEFAULT_CHAT_FRAME:AddMessage(TXT_HELP1, 1, 1, 0.5);
+        DEFAULT_CHAT_FRAME:AddMessage(TXT_HELP2, 1, 1, 0.5);
+        DEFAULT_CHAT_FRAME:AddMessage(TXT_HELP3, 1, 1, 0.5);
+        DEFAULT_CHAT_FRAME:AddMessage(TXT_HELP4, 1, 1, 0.5);
+        DEFAULT_CHAT_FRAME:AddMessage(TXT_HELP5, 1, 1, 0.5);
+        DEFAULT_CHAT_FRAME:AddMessage(TXT_HELP6, 1, 1, 0.5);
       end
     end
     ADOptions_Init();
   else
-    DEFAULT_CHAT_FRAME:AddMessage(AD_VERS_TITLE.." not loaded: Player is not a Hunter.", 1, 1, 0.5);
+    DEFAULT_CHAT_FRAME:AddMessage(AD_VERS_TITLE.." "..TXT_NOTLOADED, 1, 1, 0.5);
   end
 end
 
@@ -131,12 +127,12 @@ function AD_Toggle()
 	if(ADOptions.ADtoggle == 1) then
     ADOptions.ADtoggle = 0;
     if ( DEFAULT_CHAT_FRAME ) then
-      DEFAULT_CHAT_FRAME:AddMessage("AntiDaze off", 1, 1, 0.5);
+      DEFAULT_CHAT_FRAME:AddMessage(TXT_AD_OFF, 1, 1, 0.5);
     end
 	else
 		ADOptions.ADtoggle = 1
     if ( DEFAULT_CHAT_FRAME ) then
-      DEFAULT_CHAT_FRAME:AddMessage("AntiDaze on", 1, 1, 0.5);
+      DEFAULT_CHAT_FRAME:AddMessage(TXT_AD_ON, 1, 1, 0.5);
     end
 	end
 end
@@ -145,12 +141,12 @@ function ADCCheet_Toogle()
 	if(ADOptions.ADCCheet == 1) then
 		ADOptions.ADCCheet = 0;
     if ( DEFAULT_CHAT_FRAME ) then
-      DEFAULT_CHAT_FRAME:AddMessage("AntiDaze: Cancel Cheetah off", 1, 1, 0.5);
+      DEFAULT_CHAT_FRAME:AddMessage(TXT_CHEETAH_OFF, 1, 1, 0.5);
     end
 	else
 		ADOptions.ADCCheet = 1
     if ( DEFAULT_CHAT_FRAME ) then
-      DEFAULT_CHAT_FRAME:AddMessage("AntiDaze: Cancel Cheetah on", 1, 1, 0.5);
+      DEFAULT_CHAT_FRAME:AddMessage(TXT_CHEETAH_ON, 1, 1, 0.5);
     end
 	end
 end
@@ -159,12 +155,12 @@ function ADCPack_Toogle()
 	if(ADOptions.ADCPack == 1) then
 		ADOptions.ADCPack = 0;
     if ( DEFAULT_CHAT_FRAME ) then
-      DEFAULT_CHAT_FRAME:AddMessage("AntiDaze: Cancel Pack off", 1, 1, 0.5);
+      DEFAULT_CHAT_FRAME:AddMessage(TXT_PACK_OFF, 1, 1, 0.5);
     end
 	else
 		ADOptions.ADCPack = 1;
     if ( DEFAULT_CHAT_FRAME ) then
-      DEFAULT_CHAT_FRAME:AddMessage("AntiDaze: Cancel Pack on", 1, 1, 0.5);
+      DEFAULT_CHAT_FRAME:AddMessage(TXT_PACK_ON, 1, 1, 0.5);
     end
 	end
 end
@@ -173,12 +169,12 @@ function ADCPackPets_Toogle()
 	if(ADOptions.ADCPackPets == 1) then
 		ADOptions.ADCPackPets = 0;
     if ( DEFAULT_CHAT_FRAME ) then
-      DEFAULT_CHAT_FRAME:AddMessage("AntiDaze: Cancel Pack on Pets off", 1, 1, 0.5);
+      DEFAULT_CHAT_FRAME:AddMessage(TXT_PACK_ON_PETS_OFF, 1, 1, 0.5);
     end
 	else
 		ADOptions.ADCPackPets = 1
     if ( DEFAULT_CHAT_FRAME ) then
-      DEFAULT_CHAT_FRAME:AddMessage("AntiDaze: Cancel Pack on Pets on", 1, 1, 0.5);
+      DEFAULT_CHAT_FRAME:AddMessage(TXT_PACK_ON_PETS_ON, 1, 1, 0.5);
     end
 	end
 end
